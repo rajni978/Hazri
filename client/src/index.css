@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+
+/* Class-based dark mode: the `dark:` variant matches an ancestor with class "dark". */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Fraunces', 'Iowan Old Style', Palatino, 'Palatino Linotype', serif;
+  --font-sans: 'Source Sans 3', 'Segoe UI', sans-serif;
+
+  --color-terracotta: #b9654b;
+  --color-cream: #f4ebdd;
+  --color-charcoal: #292725;
+  --color-sage: #a9b5a0;
+  --color-sand: #d9b88f;
+  --color-paper: #fbf6ee;
+  --color-bark: #34302c;
+  --color-muted: #5e574f;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+html.dark body {
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
+.surface {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}

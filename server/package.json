@@ -1,0 +1,16 @@
+{
+  "name": "hazri-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hazri API. Feature 1 exposes a health check only.",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}
