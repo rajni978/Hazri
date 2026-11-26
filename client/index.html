@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,9 +15,12 @@
     <script>
       (function () {
         var stored = localStorage.getItem('hazri-theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light';
-        if (theme === 'dark') document.documentElement.classList.add('dark');
+        var theme = stored === 'dark' ? 'dark' : 'light';
+
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+
         document.documentElement.style.colorScheme = theme;
       })();
     </script>

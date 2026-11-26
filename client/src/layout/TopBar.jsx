@@ -6,11 +6,9 @@ export default function TopBar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
 
-  const [theme, setTheme] = useState(() =>
-    localStorage.getItem('hazri-theme') ||
-    (document.documentElement.classList.contains('dark') ? 'dark' : 'light')
-  )
-
+const [theme, setTheme] = useState(() =>
+  localStorage.getItem('hazri-theme') || 'light'
+);
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     document.documentElement.style.colorScheme = theme

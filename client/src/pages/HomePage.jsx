@@ -70,10 +70,10 @@ const roles = [
 ]
 
 function HomePage() {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('hazri-theme') ||
-      (document.documentElement.classList.contains('dark') ? 'dark' : 'light')
-  })
+const [theme, setTheme] = useState(() => {
+  return localStorage.getItem('hazri-theme') || 'light';
+});
+
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
