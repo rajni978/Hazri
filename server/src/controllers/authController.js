@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Student from '../models/Student.js';
 import jwt from 'jsonwebtoken';
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -83,11 +84,19 @@ export const registerStudent = async (req, res) => {
        rollNumber: normalizedRollNumber,
     };
 
-    if (rollNumber && String(rollNumber).trim()) {
-      userData.rollNumber = String(rollNumber).trim();
-    }
-
     const user = await User.create(userData);
+
+    try {
+      await Student.create({
+        user: user._id,
+        studentId: normalizedRollNumber,
+        phone: '',
+        isActive: true,
+      });
+    } catch (profileError) {
+      await User.findByIdAndDelete(user._id);
+      throw profileError;
+    }
 
     // --- Response (password excluded via schema select: false + explicit pick) ---
     const userResponse = {

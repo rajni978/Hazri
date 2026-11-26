@@ -3,6 +3,14 @@ import cors from 'cors';
 import express from 'express';
 import { connectDB, getDbState } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import studentRoutes from './routes/studentRoutes.js';
+import mentorRoutes from './routes/mentorRoutes.js';
+import classRoutes from './routes/classRoutes.js';
+import subjectRoutes from './routes/subjectRoutes.js';
+import assignmentRoutes from './routes/assignmentRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
+import statsRoutes from './routes/statsRoutes.js';
+import attendanceRoutes from './routes/attendanceRoutes.js';
 
 const app = express();
 
@@ -31,6 +39,22 @@ app.get('/api/health', (req, res) => {
 
 // Auth routes (mounted at /api/auth)
 app.use('/api/auth', authRoutes);
+
+// Student management (admin)
+app.use('/api/students', studentRoutes);
+// Mentor management (admin)
+app.use('/api/mentors', mentorRoutes);
+// Class management (admin)
+app.use('/api/classes', classRoutes);
+// Subject management (admin)
+app.use('/api/subjects', subjectRoutes);
+// Mentor assignments (admin)
+app.use('/api/assignments', assignmentRoutes);
+// Self-service profiles (student / mentor)
+app.use('/api/profile', profileRoutes);
+// Admin statistics
+app.use('/api', statsRoutes);
+app.use('/api/attendance', attendanceRoutes);
 
 async function start() {
   await connectDB();
